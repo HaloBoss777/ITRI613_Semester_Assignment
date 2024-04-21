@@ -3,13 +3,17 @@ import os
 import numpy as np
 from flask import jsonify
 
+#Process File
 def process_file(file_path):
     try:
+        #Get file name to use in json messsage
         file_name = os.path.basename(file_path)
+        #Do preprocessing
         subtract_background(file_path)
-        
+        #Return OK message
         return jsonify({'message': 'File uploaded and Processed successfully', 'filename': file_name})
 
+        #Throw error
     except FileNotFoundError:
         print("File not found")
     except Exception as e:
